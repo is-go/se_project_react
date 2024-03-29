@@ -1,8 +1,6 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, card, closeActiveModal }) {
-  console.log(card);
-
+function ItemModal({ activeModal, card, closeActiveModal, handleDeleteCard }) {
   return (
     <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type-image">
@@ -17,8 +15,17 @@ function ItemModal({ activeModal, card, closeActiveModal }) {
           alt={card.name}
         />
         <div className="modal__footer">
-          <h2 className="modal__caption">{card.name}</h2>
-          <p className="modal__weather">Weather: {card.weather}</p>
+          <span>
+            <h2 className="modal__caption">{card.name}</h2>
+            <p className="modal__weather">Weather: {card.weather}</p>
+          </span>
+          <button
+            type="delete"
+            className="modal__delete"
+            onClick={handleDeleteCard}
+          >
+            Delete item
+          </button>
         </div>
       </div>
     </div>

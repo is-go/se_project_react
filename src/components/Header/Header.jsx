@@ -1,6 +1,6 @@
-import { useState } from "react";
-
+import { Link } from "react-router-dom";
 import "./Header.css";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import logo from "../../assets/Logo.svg";
 import avatar from "../../assets/avatar.svg";
 import defaultAvatar from "../../assets/default-avatar.svg";
@@ -13,15 +13,23 @@ function Header({ onAddButton, weatherData }) {
 
   return (
     <header className="header">
-      <img src={logo} alt="" className="className header__logo" />
-      <p className="header__date-and-location">
-        {currentDate}, {weatherData.city}
-      </p>
-      <button onClick={onAddButton} className="header__add-clothes-button">
-        + Add Clothes
-      </button>
+      <div className="header__logo-container">
+        <Link to="/se_project_react/">
+          <img src={logo} alt="" className="header__logo" />
+        </Link>
+        <p className="header__date-and-location">
+          {currentDate}, {weatherData.city}
+        </p>
+      </div>
       <div className="header__user-container ">
-        <p className="header__username">Terrence Tegegne</p>
+        <ToggleSwitch />
+        <button onClick={onAddButton} className="header__add-clothes-button">
+          + Add Clothes
+        </button>
+        <Link to="/se_project_react/profile" className="header__username">
+          Terrence Tegegne
+        </Link>
+
         {avatar ? (
           <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
         ) : (

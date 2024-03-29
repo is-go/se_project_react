@@ -1,0 +1,26 @@
+@font-face {
+  src: url("../../vendor/CabinetGrotesk-Bold.woff") format("woff");
+  font-family: "Cabinet Grotesk-Bold";
+}
+
+.sidebar {
+  display: flex;
+  margin-top: 47px;
+  align-items: flex-start;
+  font-family: "Cabinet Grotesk-Bold";
+  font-size: 20px;
+  line-height: 24px;
+  max-width: 344px;
+}
+
+.sidebar__name {
+  padding-left: 16px;
+  margin: 0;
+  min-width: 344px;
+  padding-top: 16px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+}

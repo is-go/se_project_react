@@ -22,19 +22,35 @@
 
 .modal__image_preview {
   border-radius: 16px 16px 0px 0px;
-  max-width: 498px;
+  width: 498px;
+  height: 498px;
+  object-fit: cover;
 }
 
 .modal__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   margin: 0;
   padding: 0;
   padding-left: 32px;
 }
 
 .modal__caption {
+  font-size: 20px;
   margin: 20px 0px 12px;
 }
 
 .modal__weather {
   margin: 0px 0px 32px;
+}
+
+.modal__delete {
+  margin-right: 32px;
+  color: #ff4d00;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  max-width: 120px;
+  max-height: 24px;
 }

@@ -6,13 +6,14 @@ function ModalWithForm({
   buttonText,
   activeModal,
   closeActiveModal,
+  onAddItem,
 }) {
   return (
     <div
       className={`modal ${activeModal === "add-garment" ? "modal_opened" : ""}`}
     >
       <div className="modal__content">
-        <form action="#" className="modal__form">
+        <form action="#" className="modal__form" onSubmit={onAddItem}>
           <h2 className="modal__title">{title}</h2>
           <button
             onClick={closeActiveModal}
@@ -22,8 +23,8 @@ function ModalWithForm({
           {children}
           <button
             type="submit"
-            className="modal__submit  modal__submit_disabled"
-            disabled
+            className="modal__submit  "
+            // disabled
           >
             {buttonText}
           </button>

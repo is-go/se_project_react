@@ -7,10 +7,10 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   padding: 85px 0px 24px;
-  background-color: #f3f3f3;
+  background-color: transparent;
 }
 
 .footer__text {

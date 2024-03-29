@@ -2,6 +2,7 @@
   background-color: #f3f3f3;
   padding: 0 40px;
   min-height: 100vh;
+  position: relative;
 }
 
 .page__container {
