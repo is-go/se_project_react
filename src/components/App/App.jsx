@@ -31,19 +31,21 @@ function App() {
     setActiveModal("");
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Escape") {
-      closeActiveModal();
-    }
-  };
-
-  const handleClickOutsideModal = (event) => {
-    if (event.target.classList.contains("modal_opened")) {
-      closeActiveModal();
-    }
-  };
-
   useEffect(() => {
+    if (!activeModal) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    const handleClickOutsideModal = (event) => {
+      if (event.target.classList.contains("modal_opened")) {
+        closeActiveModal();
+      }
+    };
+
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("click", handleClickOutsideModal);
 
@@ -51,7 +53,8 @@ function App() {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("click", handleClickOutsideModal);
     };
-  }, []);
+  }, [activeModal]);
+
   const [selectedCard, setSelectedCard] = useState({});
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -69,17 +72,10 @@ function App() {
       .then((res) => {
         setClothingItems(res);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   }, []);
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-
-  // const handleToggleSwitchChange = () => {
-  //   if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
-  //   if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
-  // };
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
@@ -95,9 +91,7 @@ function App() {
         setClothingItems(newItemList);
         closeActiveModal();
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   };
 
   const handleAddItemSubmit = (values) => {
@@ -107,9 +101,7 @@ function App() {
         setClothingItems([res, ...clothingItems]);
         closeActiveModal();
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   };
 
   return (
@@ -144,13 +136,13 @@ function App() {
           <Footer />
         </div>
         <AddItemModal
-          activeModal={activeModal}
+          isOpen={activeModal === "add-garment"}
           closeActiveModal={closeActiveModal}
           onAddItem={handleAddItemSubmit}
         />
         {selectedCard ? (
           <ItemModal
-            activeModal={activeModal}
+            isOpen={activeModal === "preview"}
             card={selectedCard}
             closeActiveModal={closeActiveModal}
             handleDeleteCard={handleDeleteCard}

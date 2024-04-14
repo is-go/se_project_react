@@ -1,5 +1,5 @@
 import ItemCard from "../ItemCard/ItemCard";
-import "./ClothingSection.css";
+import "./ClothesSection.css";
 
 const ClothingSection = ({ cards, handleCardClick, handleAddButton }) => {
   return (

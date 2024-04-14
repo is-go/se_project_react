@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ closeActiveModal, onAddItem, activeModal }) => {
+const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
   const [selectedWeather, setSelectedWeather] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
@@ -38,18 +38,21 @@ const AddItemModal = ({ closeActiveModal, onAddItem, activeModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddItem({ name, link, weather });
+  };
+
+  useEffect(() => {
     setName("");
     setLink("");
     setWeather("");
     setSelectedWeather("");
     setIsChecked(false);
-  };
+  }, [isOpen]);
 
   return (
     <ModalWithForm
       title="New garment"
       buttonText="Add garment"
-      activeModal={activeModal}
+      isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       onAddItem={handleSubmit}
     >
