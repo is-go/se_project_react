@@ -1,7 +1,7 @@
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-const ClothingSection = ({ cards, handleCardClick, handleAddButton }) => {
+const ClothesSection = ({ cards, handleCardClick, handleAddButton }) => {
   return (
     <div className="clothes__section">
       <div className="clothes__section-items">
@@ -29,4 +29,4 @@ const ClothingSection = ({ cards, handleCardClick, handleAddButton }) => {
   );
 };
 
-export default ClothingSection;
+export default ClothesSection;
