@@ -14,7 +14,7 @@ function Header({ onAddButton, weatherData }) {
   return (
     <header className="header">
       <div className="header__logo-container">
-        <Link to="/se_project_react/">
+        <Link to="/">
           <img src={logo} alt="" className="header__logo" />
         </Link>
         <p className="header__date-and-location">
@@ -26,7 +26,7 @@ function Header({ onAddButton, weatherData }) {
         <button onClick={onAddButton} className="header__add-clothes-button">
           + Add Clothes
         </button>
-        <Link to="/se_project_react/profile" className="header__username">
+        <Link to="/profile" className="header__username">
           Terrence Tegegne
         </Link>
 
