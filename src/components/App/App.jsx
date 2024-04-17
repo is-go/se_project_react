@@ -68,6 +68,9 @@ function App() {
         setWeatherData(filteredData);
       })
       .catch(console.error);
+  }, []);
+
+  useEffect(() => {
     getItems()
       .then((res) => {
         setClothingItems(res);
@@ -113,7 +116,7 @@ function App() {
           <Header onAddButton={handleAddButton} weatherData={weatherData} />
           <Routes>
             <Route
-              path="/se_project_react/"
+              path="/"
               element={
                 <Main
                   weatherData={weatherData}
@@ -123,7 +126,7 @@ function App() {
               }
             />
             <Route
-              path="/se_project_react/profile"
+              path="/profile"
               element={
                 <Profile
                   handleCardClick={handleCardClick}

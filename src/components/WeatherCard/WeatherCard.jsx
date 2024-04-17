@@ -6,7 +6,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 function WeatherCard({ weatherData }) {
   // console.log(weatherData); Keeping here to check condition
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const filteredOptions = weatherOptions.filter((option) => {
+  const filteredOptions = weatherOptions.find((option) => {
     return (
       option.day === weatherData.isDay &&
       option.condition === weatherData.condition
@@ -14,10 +14,10 @@ function WeatherCard({ weatherData }) {
   });
 
   let weatherOption;
-  if (filteredOptions.length === 0) {
+  if (!filteredOptions) {
     weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
   } else {
-    weatherOption = filteredOptions[0];
+    weatherOption = filteredOptions;
   }
 
   return (

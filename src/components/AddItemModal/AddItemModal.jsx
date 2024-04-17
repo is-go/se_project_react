@@ -3,19 +3,18 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
   const [selectedWeather, setSelectedWeather] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
 
   const handleRadioChange = (event) => {
     setSelectedWeather(event.target.id);
-    setIsChecked(event.target.checked);
   };
 
   const inputClassName = (id) =>
-    isChecked && selectedWeather === id
+    selectedWeather === id
       ? "modal__radio-inputs_checked"
       : "modal__radio-inputs";
+
   const labelClassName = (id) =>
-    isChecked && selectedWeather === id
+    selectedWeather === id
       ? "modal__label modal__label-radio_checked"
       : "modal__label modal__label-radio";
 
@@ -45,7 +44,6 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
     setLink("");
     setWeather("");
     setSelectedWeather("");
-    setIsChecked(false);
   }, [isOpen]);
 
   return (
