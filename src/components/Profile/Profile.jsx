@@ -1,5 +1,5 @@
 import ClothesSection from "../ClothesSection/ClothesSection";
-import SideBar from "../SideBar/SideBar"; //changed
+import SideBar from "../Sidebar/Sidebar"; //changed
 import "../Profile/Profile.css";
 
 const Profile = ({ cards, handleAddButton, handleCardClick }) => {
