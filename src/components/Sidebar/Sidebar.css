@@ -5,12 +5,20 @@
 
 .sidebar {
   display: flex;
+  flex-direction: column;
   margin-top: 47px;
   align-items: flex-start;
   font-family: "Cabinet Grotesk-Bold";
   font-size: 20px;
   line-height: 24px;
   max-width: 344px;
+}
+
+.sidebar__cont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
 }
 
 .sidebar__name {
@@ -23,4 +31,25 @@
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 30px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidebar__buttons {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 8px;
+  padding-top: 24px;
+}
+
+
+.sidebar__button {
+  margin: 0;
+  font-family: "Cabinet Grotesk-Bold";
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: left;
 }

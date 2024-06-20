@@ -3,7 +3,7 @@
   font-family: "Cabinet Grotesk-Bold";
 }
 
-.card {
+/* .card {
   display: flex;
   justify-content: center;
   max-width: 323px;
@@ -31,7 +31,89 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
+/* .card__name-cont {
+  position: relative;
+  top: 40px;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+} */
+
+/* .card__img {
+  width: 325px;
+  height: 325px;
+}
+
+.card__like {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.card__like-img {
+  width: 20px;
+  height: 20px;
+}  */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 323px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card__name-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Centering the content horizontally */
+  width: 100%;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card__name {
+  font-family: "Cabinet Grotesk-Bold";
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 5px 10px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-right: 10px;
+}
+
 .card__img {
   width: 325px;
   height: 325px;
+}
+
+.card__like {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.card__like-img {
+  width: 20px;
+  height: 20px;
 }

@@ -23,10 +23,10 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
     setName(e.target.value);
   };
 
-  const [link, setLink] = useState("");
-  const handleLinkChange = (e) => {
-    setLink(e.target.value);
-    // console.log(link, e.target.value);
+  const [imageUrl, setimageUrl] = useState("");
+  const handleimageUrlChange = (e) => {
+    setimageUrl(e.target.value);
+    // console.log(imageUrl, e.target.value);
   };
 
   const [weather, setWeather] = useState("");
@@ -36,12 +36,12 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, link, weather });
+    onAddItem({ name, imageUrl, weather });
   };
 
   useEffect(() => {
     setName("");
-    setLink("");
+    setimageUrl("");
     setWeather("");
     setSelectedWeather("");
   }, [isOpen]);
@@ -73,8 +73,8 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
         <input
           type="url"
           minLength="2"
-          value={link}
-          onChange={handleLinkChange}
+          value={imageUrl}
+          onChange={handleimageUrlChange}
           id="imageUrl"
           placeholder="Image URL"
           className="modal__input"

@@ -1,7 +1,8 @@
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-const ClothesSection = ({ cards, handleCardClick, handleAddButton }) => {
+const ClothesSection = ({ cards, handleCardClick, handleAddButton, loggedIn, handleCardLike }) => {
+
   return (
     <div className="clothes__section">
       <div className="clothes__section-items">
@@ -21,6 +22,8 @@ const ClothesSection = ({ cards, handleCardClick, handleAddButton }) => {
               key={card._id}
               item={card}
               onCardClick={handleCardClick}
+              loggedIn={loggedIn}
+              handleCardLike={handleCardLike}
             />
           );
         })}

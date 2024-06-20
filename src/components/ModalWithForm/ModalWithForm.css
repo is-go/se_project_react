@@ -21,6 +21,7 @@
   visibility: visible;
 }
 
+
 .modal__content {
   position: relative;
   background-color: #fff;
@@ -132,7 +133,16 @@
   cursor: default;
 }
 
-input[type="radio"]:checked + .modal__label-radio {
+input[type="radio"]:checked+.modal__label-radio {
   background-color: #000;
   color: #000;
+}
+
+
+.modal__other-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 10px;
+  color: rgb(0, 0, 0, 0.5);
 }

@@ -3,13 +3,18 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
 
-function Main({ weatherData, handleCardClick, clothingItems }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  loggedIn,
+  handleCardLike,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const itemsToDisplay = clothingItems.filter((item) => {
-    return item.weather === weatherData.type;
-  });
+  const itemsToDisplay = loggedIn
+    ? clothingItems.filter((item) => item.weather === weatherData.type)
+    : clothingItems;
 
   return (
     <main>
@@ -20,15 +25,15 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
           {currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
-          {itemsToDisplay.map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onCardClick={handleCardClick}
-              />
-            );
-          })}
+          {itemsToDisplay.map((item) => (
+            <ItemCard
+              key={item._id}
+              item={item}
+              handleCardClick={() => handleCardClick(item)}
+              loggedIn={loggedIn}
+              handleCardLike={handleCardLike}
+            />
+          ))}
         </ul>
       </section>
     </main>

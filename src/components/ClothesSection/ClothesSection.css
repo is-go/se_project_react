@@ -39,6 +39,10 @@
   margin-bottom: 16px;
 }
 
+.clothes__button:hover  {
+  cursor: pointer;
+}
+
 .clothes__title {
   font-family: "Cabinet Grotesk-Bold";
   font-style: normal;
