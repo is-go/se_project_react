@@ -12,7 +12,6 @@ const RegisterModal = ({
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState("");
 
- 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -28,7 +27,6 @@ const RegisterModal = ({
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
-
 
   useEffect(() => {
     if (isOpen) {

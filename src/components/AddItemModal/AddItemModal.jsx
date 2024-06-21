@@ -24,7 +24,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
   };
 
   const [imageUrl, setimageUrl] = useState("");
-  const handleimageUrlChange = (e) => {
+  const handleImageUrlChange = (e) => {
     setimageUrl(e.target.value);
     // console.log(imageUrl, e.target.value);
   };
@@ -74,7 +74,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
           type="url"
           minLength="2"
           value={imageUrl}
-          onChange={handleimageUrlChange}
+          onChange={handleImageUrlChange}
           id="imageUrl"
           placeholder="Image URL"
           className="modal__input"

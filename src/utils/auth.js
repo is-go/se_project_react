@@ -35,10 +35,16 @@ export const editProfile = ({ name, avatar }, token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  }).then(checkResponse);
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject(`Error: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then((data) => data.user);
 };

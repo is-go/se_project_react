@@ -10,16 +10,22 @@ export function request(baseUrl, options) {
   return fetch(baseUrl, options).then(checkResponse);
 }
 
-export function getItems() {
+export function getItems(token) {
   return fetch(`${baseUrl}/items`, {
-    headers: headers,
+    headers: {
+      ...headers,
+      authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 }
 
-export function addItem({ name, weather, imageUrl }) {
+export function addItem({ name, weather, imageUrl }, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      ...headers,
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({ name, imageUrl, weather }),
   }).then(checkResponse);
 }

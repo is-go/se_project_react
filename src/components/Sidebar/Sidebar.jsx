@@ -2,13 +2,17 @@ import React from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {  CurrentUserContext } from "../../contexts/CurrentUserContext"
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./Sidebar.css";
-// import avatar from "../../assets/avatar.svg";
 
-const SideBar = ({handleEditProfile, setLoggedIn}) => {
-   const navigate = useNavigate();
-   const currentUser = useContext(CurrentUserContext);
+const SideBar = ({ handleEditProfileButton, setLoggedIn }) => {
+  const navigate = useNavigate();
+  const currentUser = useContext(CurrentUserContext);
+
+  if (!currentUser) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebar__cont">
@@ -23,7 +27,7 @@ const SideBar = ({handleEditProfile, setLoggedIn}) => {
         <button
           type="text"
           className="sidebar__button"
-          onClick={handleEditProfile}
+          onClick={handleEditProfileButton}
         >
           Change profile data
         </button>

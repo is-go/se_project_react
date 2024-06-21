@@ -19,7 +19,7 @@ const Header = ({
   });
 
   const currentUser = useContext(CurrentUserContext);
-console.log(currentUser)
+
   return (
     <header className="header">
       <div className="header__logo-container">

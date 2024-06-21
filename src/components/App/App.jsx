@@ -21,12 +21,18 @@ import {
   defaultClothingItems,
 } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { addItem, deleteItems, getItems, addLike, removeLike } from "../../utils/api";
+import {
+  addItem,
+  deleteItems,
+  getItems,
+  addLike,
+  removeLike,
+} from "../../utils/api";
 import * as auth from "../../utils/auth";
-
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -49,12 +55,14 @@ function App() {
     auth
       .signUp({ email, password, name, avatar })
       .then(() => {
-        handleSignUpButton({ email, password, name, avatar });
-        setCurrentUser({ email, password, name, avatar });
-        closeActiveModal();
-        setLoggedIn(true);
+        return auth.signIn({ email, password });
       })
-      .catch((err) => console.log(err));
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        getUserData();
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   const handleLogin = ({ email, password }) => {
@@ -65,7 +73,7 @@ function App() {
         getUserData();
         closeActiveModal();
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const handleEditProfile = ({ name, avatar }) => {
@@ -76,16 +84,40 @@ function App() {
         setCurrentUser(res);
         closeActiveModal();
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const getUserData = () => {
-      const token = localStorage.getItem("jwt");
-      auth.checkToken(token).then(res => {
+    const token = localStorage.getItem("jwt");
+    auth
+      .checkToken(token)
+      .then((res) => {
         setCurrentUser(res.user);
         setLoggedIn(true);
+      })
+      .catch(console.error)
+      .finally(() => {
+        setIsLoggedInLoading(false);
       });
-  }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((res) => {
+          setCurrentUser(res.user);
+          setLoggedIn(true);
+        })
+        .catch(console.error)
+        .finally(() => {
+          setIsLoggedInLoading(false);
+        });
+    } else {
+      setIsLoggedInLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (!activeModal) return;
@@ -127,7 +159,8 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      getItems()
+      const token = localStorage.getItem("jwt");
+      getItems(token)
         .then((res) => {
           setClothingItems(res);
         })
@@ -142,7 +175,8 @@ function App() {
   };
 
   const handleDeleteCard = () => {
-    deleteItems(selectedCard._id)
+    const token = localStorage.getItem("jwt");
+    deleteItems(selectedCard._id, token)
       .then(() => {
         const newItemList = clothingItems.filter(
           (item) => item._id !== selectedCard._id
@@ -154,7 +188,8 @@ function App() {
   };
 
   const handleAddItemSubmit = (values) => {
-    addItem(values)
+    const token = localStorage.getItem("jwt");
+    addItem(values, token)
       .then((res) => {
         setClothingItems([res, ...clothingItems]);
         closeActiveModal();
@@ -165,13 +200,13 @@ function App() {
   const handleCardLike = (id, isLiked) => {
     const token = localStorage.getItem("jwt");
     if (!isLiked) {
-        addLike(id, token)
+      addLike(id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
         })
-        .catch((err) => console.log(err));
+        .catch(console.error);
     } else {
       removeLike(id, token)
         .then((updatedCard) => {
@@ -179,7 +214,7 @@ function App() {
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
         })
-        .catch((err) => console.log(err));
+        .catch(console.error);
     }
   };
 
@@ -213,7 +248,10 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <ProtectedRoute loggedIn={loggedIn}>
+                  <ProtectedRoute
+                    loggedIn={loggedIn}
+                    isLoggedInLoading={isLoggedInLoading}
+                  >
                     <Profile
                       loggedIn={loggedIn}
                       setLoggedIn={setLoggedIn}
@@ -239,7 +277,7 @@ function App() {
               isOpen={activeModal === "preview"}
               card={selectedCard}
               closeActiveModal={closeActiveModal}
-              handleDeleteButton={handleDeleteButton}
+              onDelete={handleDeleteButton}
               loggedIn={loggedIn}
             />
           ) : (
@@ -265,7 +303,7 @@ function App() {
           <ConfirmationModal
             isOpen={activeModal === "delete"}
             closeActiveModal={closeActiveModal}
-            handleDeleteCard={handleDeleteCard}
+            handleConfirm={handleDeleteCard}
           />
         </CurrentTemperatureUnitContext.Provider>
       </CurrentUserContext.Provider>

@@ -28,7 +28,6 @@ const LoginModal = ({
   function handleSubmit(e) {
     e.preventDefault();
     handleLogin({ email, password });
-    closeActiveModal();
   }
 
   return (

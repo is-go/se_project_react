@@ -2,12 +2,18 @@ import "./ItemModal.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-function ItemModal({ isOpen, card, closeActiveModal, handleDeleteButton, loggedIn }) {
+function ItemModal({
+  isOpen,
+  card,
+  closeActiveModal,
+  handleDeleteButton,
+  loggedIn,
+}) {
   const currentUser = useContext(CurrentUserContext);
-const isLoggedIn = loggedIn && currentUser && currentUser._id; 
-const isOwner = isLoggedIn && card.owner === currentUser._id; 
+  const isLoggedIn = loggedIn && currentUser && currentUser._id;
+  const isOwner = isLoggedIn && card.owner === currentUser._id;
 
-const itemDeleteButtonClassName = `modal__delete ${isOwner ? "modal__delete_visible" : ""}`;
+  const itemDeleteButtonClassName = `modal__delete ${isOwner && isOpen ? "modal__delete_visible" : ""}`;
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>

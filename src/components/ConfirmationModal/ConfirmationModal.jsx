@@ -1,8 +1,6 @@
 import "./ConfrimationModal.css";
 
-function ConfirmationModal({
- isOpen, closeActiveModal, handleDeleteCard
-}) {
+function ConfirmationModal({ isOpen, closeActiveModal, handleDeleteCard }) {
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content-confirm">
@@ -10,8 +8,7 @@ function ConfirmationModal({
           Are you sure you want to delete this item?
         </p>
         <p className="modal__title modal__confirm-title">
-          This action is
-          irreversible.
+          This action is irreversible.
         </p>
         <div className="modal__buttons">
           <button

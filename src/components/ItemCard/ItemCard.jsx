@@ -6,11 +6,11 @@ import unlikedIcon from "../../assets/unliked-button.svg";
 
 function ItemCard({ item, handleCardClick, loggedIn, handleCardLike }) {
   const currentUser = useContext(CurrentUserContext);
-// console.log(currentUser);
-// console.log(item);
+  // console.log(currentUser);
+  // console.log(item);
   const isLiked = item.likes.some((id) => id === currentUser._id);
 
-    return (
+  return (
     <li className="card">
       <div className="card__name-cont">
         <h2 className="card__name">{item.name}</h2>
@@ -37,6 +37,5 @@ function ItemCard({ item, handleCardClick, loggedIn, handleCardLike }) {
   );
 }
 //  return (
-
 
 export default ItemCard;

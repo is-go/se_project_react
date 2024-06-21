@@ -25,42 +25,44 @@ const EditProfileModal = ({ isOpen, closeActiveModal, handleEditProfile }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setName(currentUser?.name);
-      setAvatar(currentUser?.avatar);
+      setName(currentUser?.name || "");
+      setAvatar(currentUser?.avatar || "");
     }
   }, [isOpen, currentUser]);
 
   return (
     <ModalWithForm
-      title="Edit Profile"
-     closeActiveModal={closeActiveModal}
+      title="Change profile data"
+      closeActiveModal={closeActiveModal}
       isOpen={isOpen}
       buttonText="Save Changes"
-      onSubmit={handleEditSubmit}
+      handleSubmit={handleEditSubmit}
     >
-      <label className="modal__form-label">
-        Name
-        <input
-          type="text"
-          className="modal__form-input"
-          name="name"
-          value={name}
-          onChange={handleName}
-          required
-          placeholder="Name"
-        />
-      </label>
-      <label className="modal__form-label">
-        Avatar
-        <input
-          className="modal__form-input"
-          placeholder="Avatar"
-          type="url"
-          value={avatar}
-          onChange={handleAvatar}
-          required
-        />
-      </label>
+      <div className="modal__edit-inputs">
+        <label className="modal__form-label">
+          Name *
+          <input
+            type="text"
+            className="modal__form-input modal__form-edit-input"
+            name="name"
+            value={name}
+            onChange={handleName}
+            required
+            placeholder="Name"
+          />
+        </label>
+        <label className="modal__form-label">
+          Avatar *
+          <input
+            className="modal__form-input modal__form-edit-input"
+            placeholder="Avatar"
+            type="url"
+            value={avatar}
+            onChange={handleAvatar}
+            required
+          />
+        </label>
+      </div>
     </ModalWithForm>
   );
 };
