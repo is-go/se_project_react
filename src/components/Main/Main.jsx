@@ -27,7 +27,7 @@ function Main({
         <ul className="cards__list">
           {itemsToDisplay.map((item) => (
             <ItemCard
-              key={item._id}
+              key={`${item._id}-${item.owner}`}
               item={item}
               handleCardClick={() => handleCardClick(item)}
               loggedIn={loggedIn}

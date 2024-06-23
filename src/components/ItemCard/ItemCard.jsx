@@ -6,9 +6,9 @@ import unlikedIcon from "../../assets/unliked-button.svg";
 
 function ItemCard({ item, handleCardClick, loggedIn, handleCardLike }) {
   const currentUser = useContext(CurrentUserContext);
-  // console.log(currentUser);
-  // console.log(item);
-  const isLiked = item.likes.some((id) => id === currentUser._id);
+  const isLiked =
+    Array.isArray(item.likes) &&
+    item.likes.some((id) => id === currentUser._id);
 
   return (
     <li className="card">

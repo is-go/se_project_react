@@ -8,6 +8,7 @@ const ClothesSection = ({
   loggedIn,
   handleCardLike,
 }) => {
+  const itemsToDisplay = cards;
   return (
     <div className="clothes__section">
       <div className="clothes__section-items">
@@ -21,11 +22,11 @@ const ClothesSection = ({
         </button>
       </div>
       <ul className="clothes__items">
-        {cards.map((card) => (
+        {itemsToDisplay.map((item) => (
           <ItemCard
-            key={card._id}
-            item={card}
-            handleCardClick={() => handleCardClick(card)}
+            key={`${item._id}-${item.owner}`}
+            item={item}
+            handleCardClick={() => handleCardClick(item)}
             loggedIn={loggedIn}
             handleCardLike={handleCardLike}
           />

@@ -54,9 +54,6 @@ function App() {
   const handleSignUp = ({ email, password, name, avatar }) => {
     auth
       .signUp({ email, password, name, avatar })
-      .then(() => {
-        return auth.signIn({ email, password });
-      })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
         getUserData();
@@ -81,7 +78,7 @@ function App() {
     auth
       .editProfile({ name, avatar }, token)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser({ name, avatar });
         closeActiveModal();
       })
       .catch(console.error);
