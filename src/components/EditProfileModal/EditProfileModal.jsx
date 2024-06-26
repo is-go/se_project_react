@@ -6,7 +6,6 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const EditProfileModal = ({ isOpen, closeActiveModal, handleEditProfile }) => {
   const currentUser = useContext(CurrentUserContext);
-
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 

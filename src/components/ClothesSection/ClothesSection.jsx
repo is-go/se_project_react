@@ -24,7 +24,7 @@ const ClothesSection = ({
       <ul className="clothes__items">
         {itemsToDisplay.map((item) => (
           <ItemCard
-            key={`${item._id}-${item.owner}`}
+            key={`${item._id}`}
             item={item}
             handleCardClick={() => handleCardClick(item)}
             loggedIn={loggedIn}

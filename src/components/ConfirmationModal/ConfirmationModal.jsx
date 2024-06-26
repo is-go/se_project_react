@@ -1,6 +1,7 @@
 import "./ConfrimationModal.css";
 
-function ConfirmationModal({ isOpen, closeActiveModal, handleDeleteCard }) {
+function ConfirmationModal({ isOpen, closeActiveModal, handleDeleteCard, card }) {
+console.log(card);
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content-confirm">
@@ -14,7 +15,7 @@ function ConfirmationModal({ isOpen, closeActiveModal, handleDeleteCard }) {
           <button
             type="button"
             className="modal__confirm-button"
-            onClick={handleDeleteCard}
+            onClick={() => handleDeleteCard(card)}
           >
             Yes, delete item
           </button>

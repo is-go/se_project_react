@@ -78,7 +78,11 @@ function App() {
     auth
       .editProfile({ name, avatar }, token)
       .then((res) => {
-        setCurrentUser({ name, avatar });
+        setCurrentUser((prevUser) => ({
+          ...prevUser,
+          name: name,
+          avatar: avatar,
+        }));
         closeActiveModal();
       })
       .catch(console.error);
@@ -173,6 +177,7 @@ function App() {
 
   const handleDeleteCard = () => {
     const token = localStorage.getItem("jwt");
+    console.log(selectedCard);
     deleteItems(selectedCard._id, token)
       .then(() => {
         const newItemList = clothingItems.filter(
@@ -274,7 +279,7 @@ function App() {
               isOpen={activeModal === "preview"}
               card={selectedCard}
               closeActiveModal={closeActiveModal}
-              onDelete={handleDeleteButton}
+              handleDeleteButton={handleDeleteButton}
               loggedIn={loggedIn}
             />
           ) : (
@@ -300,7 +305,8 @@ function App() {
           <ConfirmationModal
             isOpen={activeModal === "delete"}
             closeActiveModal={closeActiveModal}
-            handleConfirm={handleDeleteCard}
+            handleDeleteCard={handleDeleteCard}
+            card={selectedCard}
           />
         </CurrentTemperatureUnitContext.Provider>
       </CurrentUserContext.Provider>
