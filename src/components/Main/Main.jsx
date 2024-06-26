@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
@@ -12,8 +13,12 @@ function Main({
   handleCardLike,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const currentUser = useContext(CurrentUserContext);
   const itemsToDisplay = loggedIn
-    ? clothingItems.filter((item) => item.weather === weatherData.type)
+    ? clothingItems.filter(
+        (item) =>
+          item.weather === weatherData.type && item.owner === currentUser._id
+      )
     : clothingItems;
 
   return (

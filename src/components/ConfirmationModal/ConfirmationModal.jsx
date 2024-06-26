@@ -1,7 +1,11 @@
 import "./ConfrimationModal.css";
 
-function ConfirmationModal({ isOpen, closeActiveModal, handleDeleteCard, card }) {
-console.log(card);
+function ConfirmationModal({
+  isOpen,
+  closeActiveModal,
+  handleDeleteCard,
+  card,
+}) {
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content-confirm">

@@ -1,5 +1,7 @@
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const ClothesSection = ({
   cards,
@@ -8,7 +10,14 @@ const ClothesSection = ({
   loggedIn,
   handleCardLike,
 }) => {
-  const itemsToDisplay = cards;
+  const currentUser = useContext(CurrentUserContext);
+
+  if (!currentUser) {
+    return <div>Loading...</div>;
+  }
+
+  const itemsToDisplay = cards.filter((item) => item.owner === currentUser._id);
+
   return (
     <div className="clothes__section">
       <div className="clothes__section-items">

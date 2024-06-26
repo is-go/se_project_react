@@ -9,7 +9,6 @@ function ItemCard({ item, handleCardClick, loggedIn, handleCardLike }) {
   const isLiked =
     Array.isArray(item.likes) &&
     item.likes.some((id) => id === currentUser._id);
-
   return (
     <li className="card">
       <div className="card__name-cont">
@@ -36,6 +35,5 @@ function ItemCard({ item, handleCardClick, loggedIn, handleCardLike }) {
     </li>
   );
 }
-//  return (
 
 export default ItemCard;

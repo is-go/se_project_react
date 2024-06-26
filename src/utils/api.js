@@ -30,10 +30,13 @@ export function addItem({ name, weather, imageUrl }, token) {
   }).then(checkResponse);
 }
 
-export function deleteItems(_id) {
+export function deleteItems(_id, token) {
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
-    headers: headers,
+    headers: {
+      ...headers,
+      authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 }
 
