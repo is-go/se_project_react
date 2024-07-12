@@ -133,3 +133,8 @@ export const defaultWeatherOptions = {
     url: new URL("../assets/night/night-default.svg", import.meta.url).href,
   },
 };
+
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr-isaic.catcher.ru"
+    : "http://localhost:3001";

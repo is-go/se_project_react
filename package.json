@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://is-go.github.io/se_project_react/",
+  "homepage": "https://wtwr-isaic.catcher.ru",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build &&  scp -r ./dist/* go_isaic@wtwr-isaic.catcher.ru:/home/go_isaic/frontend",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

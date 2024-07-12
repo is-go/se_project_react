@@ -1,4 +1,4 @@
-import { baseUrl } from "./api";
+import { baseUrl } from "./constants";
 import { checkResponse } from "./weatherApi";
 
 export const signUp = ({ email, password, name, avatar }) => {
