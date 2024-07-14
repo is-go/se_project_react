@@ -2,13 +2,12 @@
 
 ![](./src/assets/Logo.svg)
 
-NExt stage of a new project were users can have an array of clothing options dependent on the the weather conditions. Users can now register,login, like, and unlike items!
+Final stage of the WTWR project were users can have an array of clothing options dependent on the the weather conditions. Users can now register,login, like, and unlike items!
 
 ## Repo Links
 
 - https://github.com/is-go/se_project_react
 - https://github.com/is-go/se_project_express
-
 
 ## Project features
 
@@ -24,7 +23,7 @@ NExt stage of a new project were users can have an array of clothing options dep
 
 ## Link to Deployed Landing Page
 
-- https://is-go.github.io/se_project_react/
+- https://www.wtwr-isaic.catcher.ru/
 
 ## Plan on improving the site
 
